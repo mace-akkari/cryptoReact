@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import RateList from './RateList';
+import { getRates } from './currencylibrary';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      currency: props.currencyList[0],
+      rates: [],
+      error: false
+    };
+    this.fetchRates = this.fetchRates.bind(this);
+  }
+
+  async fetchRates(currency) {
+    this.setState({
+      loaded: false
+    });
+    const rates = await getRates(currency, this.props.currencyList);
+    this.setState({
+      loaded: true,
+      currency,
+      rates
+    });
+  }
+
+  async componentDidMount() {
+    const { currency } = this.state;
+    const rates = await getRates(currency, this.props.currencyList);
+    this.setState({
+      loaded: true,
+      rates
+    });
+  }
+
+  componentDidCatch() {
+    console.log('error')
+    this.setState({ error: true });
+  }
+
+  render() {
+    const { currency, loaded, rates, error } = this.state;
+    const { currencyList } = this.props;
+    const currencyButtons = currencyList
+      .map((c) => (<button onClick={() => this.fetchRates(c)}>{c}</button>))
+    return (
+      <div className="App">
+        <h1>Crypto API</h1>
+        {currencyButtons}
+        <h2>{currency}</h2>
+        {error ? <h2>ERROR HAS OCCURED</h2> : ""}
+        {loaded && !error ? <RateList rates={rates} /> : "Loading"}
+      </div>
+    );
+  }
+}
+
+App.defaultProps = {
+  currencyList: ["BTC", "ETH", "LTC"]
 }
 
 export default App;
