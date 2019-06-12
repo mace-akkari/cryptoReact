@@ -9,6 +9,7 @@
     font-size: 25px;
     width: 60%;
     display: inline-block;
+    overflow: hidden;
 }
 
 p {
