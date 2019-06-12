@@ -45,12 +45,12 @@ class App extends Component {
     const { currency, loaded, rates, error } = this.state;
     const { currencyList } = this.props;
     const currencyButtons = currencyList
-      .map((c) => (<button onClick={() => this.fetchRates(c)}>{c}</button>))
+      .map((c) => (<button className="currencyBtn"onClick={() => this.fetchRates(c)}>{c}</button>))
     return (
       <div className="App">
         <h1>Crypto API</h1>
         {currencyButtons}
-        <h2>{currency}</h2>
+        <h2>{`You have chosen to compare ${currency} against:`}</h2>
         {error ? <h2>ERROR HAS OCCURED</h2> : ""}
         {loaded && !error ? <RateList rates={rates} /> : "Loading"}
       </div>
@@ -59,7 +59,7 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  currencyList: ["BTC", "ETH", "LTC"]
+  currencyList: ["GBP", "USD", "BTC", "ETH", "LTC"]
 }
 
 export default App;
