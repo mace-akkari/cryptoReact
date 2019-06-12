@@ -24,7 +24,7 @@ function getRatesFrom(rates, currency, currencyList) {
   }));
 }
 
-export async function getRates(currency, currencyList = ["BTC", "ETH", "LTC"]) {
+export async function getRates(currency, currencyList = []) {
   const rates = await getRatesFor(currency);
   return getRatesFrom(rates, currency, currencyList);
 }
