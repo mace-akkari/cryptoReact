@@ -18,5 +18,6 @@ html {
 .currencyBtn:focus {
   outline: none;
   background-color: #B8B8B8;
+  font-weight: bold;
 }
 
