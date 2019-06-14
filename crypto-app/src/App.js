@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
         <h1>Crypto API</h1>
         {currencyButtons}
-        <h2>{`You have chosen to compare ${currency} against:`}</h2>
+        <h2>{`You have chosen to compare`}</h2> <span>{`${currency} against:`}</span>
         {error ? <h2>ERROR HAS OCCURED</h2> : ""}
         {loaded && !error ? <RateList rates={rates} /> : "Loading"}
       </div>
