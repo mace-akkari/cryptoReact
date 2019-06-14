@@ -6,10 +6,10 @@
 .ratesBorder{
     border: 3px #C8C8C8 solid;
     margin: 5px;
-    font-size: 25px;
     width: 60%;
     display: inline-block;
     overflow: hidden;
+    font-weight: bold;   
 }
 
 p {
