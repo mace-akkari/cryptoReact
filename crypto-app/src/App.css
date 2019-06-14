@@ -14,3 +14,7 @@ html {
   background-color: aliceblue;
   font-size: 18px;
 }
+
+.currencyBtn:focus {
+  outline: none;
+}
