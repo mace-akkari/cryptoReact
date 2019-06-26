@@ -24,7 +24,7 @@ class App extends Component {
       loaded: true,
       currency,
       rates
-    });
+    }); 
   }
 
   async componentDidMount() {
@@ -45,7 +45,11 @@ class App extends Component {
     const { currency, loaded, rates, error } = this.state;
     const { currencyList } = this.props;
     const currencyButtons = currencyList
-      .map((c) => (<button className="currencyBtn"onClick={() => this.fetchRates(c)}>{c}</button>))
+      .map((c) => {
+        const selected = currency === c ? 'selected': '';
+        const clickHandler = () => this.fetchRates(c)
+        return (<button key={c} className={`currencyBtn ${selected}`} onClick={clickHandler}>{c}</button>)
+      });
     return (
       <div className="App">
         <h1>Crypto API</h1>

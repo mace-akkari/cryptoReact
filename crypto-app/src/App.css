@@ -14,17 +14,15 @@ html {
   font-weight: bold;
 }
 
-.currencyBtn{
+.currencyBtn {
   margin: 3px;
   border-radius: 50%;
+  outline: none;
   height: 48px;
   background-color: aliceblue;
   font-size: 18px;
 }
 
-.currencyBtn:focus {
-  outline: none;
-  background-color: #B8B8B8;
-  font-weight: bold;
+.selected {
+  background-color:lightblue;
 }
-
